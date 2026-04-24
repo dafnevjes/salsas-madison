@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritas - NSQK</title>
+    <style>
+        /* BASE */
+        body {
+            margin: 0;
+            background: #142850;
+            color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            font-weight: 900;
+        }
+
+        .grid-canciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* TARJETAS */
+        .card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .card.playing {
+            border-color: #4a86f7;
+            box-shadow: 0 0 20px rgba(74, 134, 247, 0.4);
+            background: rgba(74, 134, 247, 0.1);
+        }
+
+        .portada {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .nombre-cancion {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .fecha-publicacion {
+            display: block;
+            font-size: 0.9rem;
+            color: #8da9c4;
+            margin-bottom: 20px;
+        }
+
+        small {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* BOTÓN ESTRELLA */
+        .contenedor-regresar {
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-estrella {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+            height: 160px;
+            background: black;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            transition: transform 0.4s ease;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            filter: drop-shadow(0 0 2px white);
+        }
+
+        .btn-estrella:hover {
+            transform: scale(1.15) rotate(15deg);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MIS FAVORITAS</h1>
+
+    <audio id="reproductor"></audio>
+
+    <div class="grid-canciones">
+        
+        <div class="card" data-audio="audio/sisifo.mp3">
+            <img src="img/sisifo.jpeg" alt="Sísifo" class="portada">
+            <span class="nombre-cancion">Sísifo</span>
+            <span class="fecha-publicacion">Álbum: ROY | 2023</span>
+            <small>Pica para reproducir 🎵</small>
+        </div>
+
+        <div class="card" data-audio="audio/nadie_mas.mp3">
+            <img src="img/nadie_mas.jpg" alt="Nadie Más" class="portada">
+            <span class="nombre-cancion">Nadie más</span>
+            <span class="fecha-publicacion">Álbum: Braile | 2022</span>
+            <small>Pica para reproducir 🎵</small>
+        </div>
+
+        <div class="card" data-audio="audio/arbol.mp3">
+            <img src="img/arbol.jpg" alt="Árbol de manzana" class="portada">
+            <span class="nombre-cancion">Árbol de manzana</span>
+            <span class="fecha-publicacion">Álbum: ROY | 2023</span>
+            <small>Pica para reproducir 🎵</small>
+        </div>
+
+        <div class="card" data-audio="audio/amandote.mp3">
+            <img src="img/amandote.jpg" alt="Amándote" class="portada">
+            <span class="nombre-cancion">Amándote</span>
+            <span class="fecha-publicacion">Álbum: ROY | 2023</span>
+            <small>Pica para reproducir 🎵</small>
+        </div>
+
+        <div class="card" data-audio="audio/rompecabezas.mp3">
+            <img src="img/rompecabezas.jpeg" alt="Rompecabezas" class="portada">
+            <span class="nombre-cancion">Rompecabezas</span>
+            <span class="fecha-publicacion">Álbum: MDB | 2024</span>
+            <small>Pica para reproducir 🎵</small>
+        </div>
+
+        <div class="card" data-audio="audio/si_en_tu_mente.mp3">
+            <img src="img/si_en_tu_mente.jpg" alt="Si en tu mente estuve" class="portada">
+            <span class="nombre-cancion">Si en tu mente estuve</span>
+            <span class="fecha-publicacion">Álbum: ROY | 2023</span>
+            <small>Pica para reproducir 🎵</small>
+        </div>
+
+    </div>
+
+    <div class="contenedor-regresar">
+        <a href="index.html" class="btn-estrella">
+            <span>REGRESAR <br> AL MENÚ</span>
+        </a>
+    </div>
+
+    <script>
+        const reproductor = document.getElementById('reproductor');
+        const tarjetas = document.querySelectorAll('.card');
+
+        tarjetas.forEach(tarjeta => {
+            tarjeta.addEventListener('click', () => {
+                const archivoAudio = tarjeta.getAttribute('data-audio');
+
+                // Si ya está sonando esta misma canción, la pausamos
+                if (reproductor.src.includes(archivoAudio) && !reproductor.paused) {
+                    reproductor.pause();
+                    tarjeta.classList.remove('playing');
+                } else {
+                    // Cambiamos la fuente y reproducimos
+                    reproductor.src = archivoAudio;
+                    reproductor.play();
+                    
+                    // Manejo de clases visuales
+                    tarjetas.forEach(t => t.classList.remove('playing'));
+                    tarjeta.classList.add('playing');
+                }
+            });
+        });
+
+        // Quitar el brillo cuando la canción termine sola
+        reproductor.onended = () => {
+            tarjetas.forEach(t => t.classList.remove('playing'));
+        };
+    </script>
+
+</body>
+</html>

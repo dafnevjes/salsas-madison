@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre NSQK</title>
+
+    <style>
+        /* BASE */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0f1c3f;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* TÍTULO PRINCIPAL */
+        .titulo-seccion {
+            font-size: 4rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 10px;
+            margin: 50px 0;
+            text-align: center;
+            color: #4a86f7;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* CONTENEDOR DINÁMICO */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* BLOQUES DE INFORMACIÓN */
+        .bloque {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        /* Alternar orden de imagen y texto */
+        .bloque.reverse {
+            flex-direction: row-reverse;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .foto-artista {
+            width: 350px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 20px 20px 0px #2f5aa8;
+            transition: 0.4s;
+        }
+
+        .foto-artista:hover {
+            transform: scale(1.03);
+            box-shadow: 10px 10px 0px #4a86f7;
+        }
+
+        .texto {
+            flex: 1;
+            text-align: left;
+        }
+
+        .texto h2 {
+            font-size: 2rem;
+            color: #8da9c4;
+            margin-bottom: 15px;
+        }
+
+        .texto p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        /* BOTÓN ESTRELLA (REGRESAR) */
+        .contenedor-regresar {
+            margin: 100px 0 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-estrella {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+            background: black;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            transition: transform 0.4s ease;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            filter: drop-shadow(0 0 2px white);
+        }
+
+        .btn-estrella:hover {
+            transform: scale(1.15) rotate(-15deg);
+            filter: drop-shadow(0 0 8px #4a86f7);
+        }
+
+        /* Móviles */
+        @media (max-width: 768px) {
+            .bloque, .bloque.reverse {
+                flex-direction: column;
+                text-align: center;
+            }
+            .texto { text-align: center; }
+            .foto-artista { width: 100%; height: auto; }
+            .titulo-seccion { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="titulo-seccion">Rodrigo</h1>
+
+    <div class="container">
+        
+        <div class="bloque" style="animation-delay: 0.2s;">
+            <img src="img/nsqk_1.jpg" alt="NSQK Live" class="foto-artista">
+            <div class="texto">
+                <h2>La Esencia</h2>
+                <p>
+                    Rodrigo Cárdenas, mejor conocido como <strong>NSQK</strong> (pronunciado como "Nesquik"), es un productor, cantante y compositor originario de Monterrey, México. 
+                    Se ha convertido en una de las figuras más frescas del R&B alternativo y el Indie Pop en español.
+                </p>
+            </div>
+        </div>
+
+        <div class="bloque reverse" style="animation-delay: 0.4s;">
+            <img src="img/nsqk_2.jpg" alt="NSQK Studio" class="foto-artista">
+            <div class="texto">
+                <h2>Sonido Único</h2>
+                <p>
+                    Su música mezcla texturas electrónicas con letras profundamente emocionales. Con álbumes como <em>ROY</em> y <em>Braille</em>, 
+                    ha demostrado una capacidad increíble para explorar la vulnerabilidad, el amor y el existencialismo bajo una estética visual impecable.
+                </p>
+            </div>
+        </div>
+
+        <div class="bloque" style="animation-delay: 0.6s;">
+            <img src="img/nsqk_3.jpg" alt="NSQK Portada" class="foto-artista">
+            <div class="texto">
+                <h2>Más que Música</h2>
+                <p>
+                    NSQK no solo canta; él crea mundos. Desde su etapa en el colectivo "Noa Noa" hasta su carrera en solitario, 
+                    ha redefinido lo que significa ser un artista independiente en la era digital, cuidando cada detalle de su arte.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="contenedor-regresar">
+        <a href="index.html" class="btn-estrella">
+            <span>VOLVER <br> AL INICIO</span>
+        </a>
+    </div>
+
+</body>
+</html>
