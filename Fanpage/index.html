@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanpage NSQK</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: white;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        /* FONDO CON MOVIMIENTO */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("img/nsqkportada.jpg") center/cover no-repeat;
+            z-index: -1;
+            animation: zoomInfinito 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes zoomInfinito {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* NOMBRE DESPLAZADO (Para no tapar la foto) */
+        .header-title {
+            align-self: flex-start; /* Se mueve a la izquierda */
+            background-color: rgba(0,0,0,0.6);
+            padding: 10px 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid #4a86f7; /* Detalle elegante */
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 8px;
+            font-weight: 200;
+        }
+
+        /* MENÚ DE ESTRELLAS COOL */
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn-estrella {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px; /* Tamaño grande para evitar cortes */
+            height: 180px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.2;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            /* Forma y Borde Neón */
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-estrella span {
+            display: block;
+            width: 80px; /* Área segura de texto */
+            pointer-events: none;
+        }
+
+        .btn-estrella:hover {
+            transform: scale(1.15) rotate(72deg);
+            background: #4a86f7;
+            filter: drop-shadow(0 0 20px #4a86f7);
+            color: white;
+        }
+
+        /* Partículas de fondo */
+        .particula {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: parpadeo infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes parpadeo {
+            from { opacity: 0.1; }
+            to { opacity: 0.6; }
+        }
+
+        @media (max-width: 600px) {
+            .btn-estrella { width: 130px; height: 130px; font-size: 10px; }
+            .header-title { align-self: center; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="hero">
+    <div id="particulas"></div>
+
+    <div class="menu">
+        <a href="sobre.html" class="btn-estrella">
+            <span>SOBRE <br> NSQK</span>
+        </a>
+        
+        <a href="favoritas.html" class="btn-estrella">
+            <span>MIS <br> FAVORITAS</span>
+        </a>
+        
+        <a href="escucha.html" class="btn-estrella">
+            <span>ESCÚCHALO <br> AQUÍ</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    const contenedor = document.getElementById('particulas');
+    for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.className = 'particula';
+        const tamaño = Math.random() * 3 + 'px';
+        p.style.width = tamaño;
+        p.style.height = tamaño;
+        p.style.top = Math.random() * 100 + 'vh';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = (Math.random() * 3 + 1) + 's';
+        contenedor.appendChild(p);
+    }
+</script>
+
+</body>
+</html>
